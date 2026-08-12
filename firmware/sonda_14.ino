@@ -367,6 +367,8 @@ void checkAndApplyOTA() {
   HTTPClient http;
   http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
   http.begin(verClient, OTA_VERSION_URL);
+  http.addHeader("Cache-Control", "no-cache");
+  http.addHeader("Pragma", "no-cache");
   int code = http.GET();
   if (code != 200) {
     safeLog(">>> [OTA] version check fail code=%d\n", code);
@@ -1363,8 +1365,6 @@ WiFi.mode(WIFI_AP);
 WiFi.softAPConfig(IPAddress(192, 168, 4, 1), IPAddress(192, 168, 4, 1), IPAddress(255, 255, 255, 0));
 WiFi.softAP("ExoTerLog_Pro_Config", "Sonda123");
 setLedState(true);
-setLedState(true);
-setLedState(true);
 
 // El asterisco "*" significa: "Cualquier URL que busquen, mandalos a mi IP"
 dnsServer.start(53, "*", IPAddress(192, 168, 4, 1));
@@ -1592,7 +1592,6 @@ if (esInicio || esFin || (estado.run_id > 0) || cold) {
 if (duracionGraciaMs > 0 || modoOnlineForzado) {
   keepWifiDuringGrace = true;
   enGracia = true;
-  updateLedByMode(false, true, (WiFi.status() == WL_CONNECTED));
   updateLedByMode(false, true, (WiFi.status() == WL_CONNECTED));
 
   unsigned long finBucle = modoOnlineForzado ? 0UL : (millis() + duracionGraciaMs);
@@ -1835,7 +1834,6 @@ if (pendingWakeupReport) {
   keepWifiDuringGrace = false;
   enGracia = false;
   updateLedByMode(false, false, (WiFi.status() == WL_CONNECTED));
-  updateLedByMode(false, false, WiFi.status() == WL_CONNECTED);
 }
 
   // --- 5. GUARDAR CAMBIOS FINALES ---
