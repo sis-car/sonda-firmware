@@ -82,8 +82,8 @@ const int   LED_PIN = 27;  // LED de estado
 
 // --- OTA via GitHub (ajustar a tu repositorio) ---
 #define FIRMWARE_VERSION "1.0.0"
-const char* OTA_VERSION_URL  = "https://raw.githubusercontent.com/sis-car/sonda-firmware/upload/main/firmware/version.txt";
-const char* OTA_FIRMWARE_URL = "https://raw.githubusercontent.com/sis-car/sonda-firmware/upload/main/firmware/sonda_14.bin";
+const char* OTA_VERSION_URL  = "https://raw.githubusercontent.com/sis-car/sonda-firmware/refs/heads/main/firmware/version.txt";
+const char* OTA_FIRMWARE_URL = "https://raw.githubusercontent.com/sis-car/sonda-firmware/refs/heads/main/firmware/sonda_14.ino";
 
 const uint32_t T_GRACIA_INICIAL_MS = 5 * 60 * 1000UL;
 const uint32_t T_GRACIA_FINAL_MS   = 1 * 60 * 1000UL;
